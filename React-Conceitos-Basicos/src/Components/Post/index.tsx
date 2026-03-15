@@ -1,3 +1,5 @@
+import { Children, type ReactNode } from "react";
+
 interface PostProps {
 	id: number;
 	image: string;
@@ -7,14 +9,21 @@ interface PostProps {
 	author: string;
 	avatar: string;
 	createdAt: string;
+	children?: ReactNode;
 }
 export function Post(props: PostProps) {
 	console.log(props);
+	const hasExtraContent = true;
+
+	function handleLike() {
+		alert("Você curtiu esse post");
+	}
+
 	return (
 		<article>
+			<h2>{props.title}</h2>
 			<img src={props.image} />
 			<p>{props.category}</p>
-			<h2>{props.title}</h2>
 			<div>
 				<img src={props.avatar} />
 				<div>
@@ -24,6 +33,12 @@ export function Post(props: PostProps) {
 				</div>
 			</div>
 			<p>{props.description}</p>
+			{hasExtraContent ? (
+				<button>Leia mais</button>
+			) : (
+				<p>Nenhum conteúdo disponível</p>
+			)}
+			<button onClick={handleLike}>Curtir</button>
 		</article>
 	);
 }
