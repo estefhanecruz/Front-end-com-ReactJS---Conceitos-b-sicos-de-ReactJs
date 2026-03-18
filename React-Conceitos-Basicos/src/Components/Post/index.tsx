@@ -1,4 +1,5 @@
 import { Children, type ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 interface PostProps {
 	id: number;
@@ -11,28 +12,40 @@ interface PostProps {
 	createdAt: string;
 	children?: ReactNode;
 }
-export function Post(props: PostProps) {
-	console.log(props);
-	const hasExtraContent = true;
+export function Post({
+	id,
+	author,
+	avatar,
+	category,
+	createdAt,
+	description,
+	image,
+	title = "Post sem título",
+	children,
+}: PostProps) {
+	const hasExtraContent = false;
 
 	function handleLike() {
-		alert("Você curtiu esse post");
+		alert(`Você curtiu o post ${title}`);
 	}
 
 	return (
 		<article>
-			<h2>{props.title}</h2>
-			<img src={props.image} />
-			<p>{props.category}</p>
+			<h2>
+				<Link to={`/post/${id}`}>{title}</Link>
+			</h2>
+			<img src={image} alt="title" />
+			<p>{category}</p>
 			<div>
-				<img src={props.avatar} />
+				<img src={avatar} />
 				<div>
-					<span>{props.author}</span>
+					<span>{author}</span>
 					<br />
-					<span>{props.createdAt}</span>
+					<span>{createdAt}</span>
 				</div>
 			</div>
-			<p>{props.description}</p>
+			<p>{description}</p>
+			{children}
 			{hasExtraContent ? (
 				<button>Leia mais</button>
 			) : (

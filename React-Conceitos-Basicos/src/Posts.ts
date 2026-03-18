@@ -20,7 +20,7 @@ export const posts = [
 		avatar: "https://github.com/estefhanecruz.png",
 		author: "Julia Melo",
 		createdAt: "amanhã",
-		description: "Excelentes truques caseiro para maquiagem",
+		description: "Excelentes truques caseiros para maquiagem",
 	},
 
 	{
