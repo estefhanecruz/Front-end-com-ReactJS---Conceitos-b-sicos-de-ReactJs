@@ -1,17 +1,6 @@
-import { Children, type ReactNode } from "react";
 import { Link } from "react-router-dom";
+import type { IPost } from "../../types";
 
-interface PostProps {
-	id: number;
-	image: string;
-	category: string;
-	title: string;
-	description: string;
-	author: string;
-	avatar: string;
-	createdAt: string;
-	children?: ReactNode;
-}
 export function Post({
 	id,
 	author,
@@ -22,11 +11,13 @@ export function Post({
 	image,
 	title = "Post sem título",
 	children,
-}: PostProps) {
+}: IPost) {
 	const hasExtraContent = false;
+	let likeCount = 0;
 
 	function handleLike() {
-		alert(`Você curtiu o post ${title}`);
+		likeCount += 1;
+		alert(`Você curtiu este post ${likeCount} vezes!`);
 	}
 
 	return (
